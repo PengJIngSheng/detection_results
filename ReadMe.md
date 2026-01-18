@@ -19,18 +19,27 @@ Plaintext
 .
 ├── config.yaml              # 核心配置文件 (模型路径、阈值、追踪参数)
 ├── detect.py                # 推理主程序 (用于运行检测和追踪)
-├── detector.py              # YOLO 检测器封装类
 ├── extract_frames.py        # 数据预处理工具 (从视频提取图片)
-├── tain_staff.py            # 模型训练脚本
+├── tain_staff.py            # 模型训练脚本 (微调Yolov13x)
 ├── tracker.py               # 追踪算法实现 (Kalman Filter + SORT)
-├── utils.py                 # 通用工具函数 (绘图、IO、日志)
-├── requirements.txt         # (建议创建) 依赖库列表
+├── configs/
+    └── data.yaml            # 数据集根目以及
 ├── models/
-│   └── yolov13x.pt          # 预训练底模
+    └── yolov13x.pt          # 预训练底模
+├── src/
+    └── yolov13x.pt  
+    └── detector.py          # YOLO 检测器封装类
+    └── utils.py             # 通用工具函数 (绘图、IO、日志)
 └── data/
     ├── input/               # 输入视频 (如 sample.mp4)
     ├── output/              # 输出结果 (视频和JSON)
-    ├── dataset/             # 训练数据集 (images/labels)
+    ├── dataset/
+        └── images/
+        	└── train
+        	└── val 
+        └── labels/
+        	└── train
+        	└── val          # 训练数据集 (images/labels)
     └── staff_dataset.yaml   # YOLO 数据集配置
 ```
 
