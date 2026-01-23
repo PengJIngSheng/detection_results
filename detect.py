@@ -74,7 +74,7 @@ def main():
     output_dir = Path(config['paths']['output'])
     create_directories([str(output_dir)])
 
-    print("Initializing Staff Detector...")
+    print("初始化，解析视频当中")
     detector = StaffDetector(
         weights_path=config['model']['weights'],
         device=config['model']['device'],
@@ -94,7 +94,7 @@ def main():
 
     cap, metadata = load_video(args.video)
 
-    print(f"Video Info:")
+    print(f"视频信息:")
 
     video_writer = None
     if config['output']['save_video']:
@@ -105,10 +105,8 @@ def main():
             metadata['width'],
             metadata['height']
         )
-        print(f"\nOutput video will be saved to: {output_video_path}")
 
-    print("\n" + "=" * 60)
-    print("Processing Video...")
+    print("处理中")
 
     frame_idx = 0
     all_detections = []
@@ -189,7 +187,7 @@ def main():
     if args.visualize:
         cv2.destroyAllWindows()
 
-    print("Saving Results...")
+    print("生成结果中")
 
     summary = create_summary_report(
         all_detections,
@@ -200,8 +198,8 @@ def main():
     output_json_path = output_dir / 'detection_results.json'
     save_detection_results(summary, str(output_json_path))
 
-    print("\nProcessing complete!")
-    print(f"Results saved to: {output_dir}")
+    print("\n运行结束!")
+    print(f"输出文件保存至: {output_dir}")
 
 
 if __name__ == '__main__':
